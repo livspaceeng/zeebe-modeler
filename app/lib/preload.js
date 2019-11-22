@@ -25,13 +25,15 @@ const {
 /* global window */
 
 window.getAppPreload = function() {
-
   return {
-    metadata: app.metadata,
-    plugins: app.plugins.getAll(),
-    flags: app.flags.getAll(),
+    metadata: {
+      version: '0.8.0-dev',
+      name: 'Zeebe modeler'
+    },// metadata: app.metadata,
+    plugins: [],// plugins: app.plugins.getAll(),
+    flags: {},// flags: app.flags.getAll(),
     ipcRenderer,
-    platform
+    platform: 'darwin'// platform
   };
 
 };

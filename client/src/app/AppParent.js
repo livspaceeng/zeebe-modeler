@@ -8,6 +8,8 @@
  * except in compliance with the MIT License.
  */
 
+const hardcodedfile = {"contents":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" id=\"Definitions_1\" targetNamespace=\"http://bpmn.io/schema/bpmn\">\n  <bpmn:process id=\"Process_1\" isExecutable=\"false\">\n    <bpmn:startEvent id=\"StartEvent_1\">\n      <bpmn:outgoing>SequenceFlow_0b6cm13</bpmn:outgoing>\n    </bpmn:startEvent>\n    <bpmn:task id=\"Task_0zlv465\" name=\"foo\">\n      <bpmn:incoming>SequenceFlow_0b6cm13</bpmn:incoming>\n      <bpmn:outgoing>SequenceFlow_17w8608</bpmn:outgoing>\n    </bpmn:task>\n    <bpmn:sequenceFlow id=\"SequenceFlow_0b6cm13\" sourceRef=\"StartEvent_1\" targetRef=\"Task_0zlv465\" />\n    <bpmn:endEvent id=\"EndEvent_09arx8f\">\n      <bpmn:incoming>SequenceFlow_17w8608</bpmn:incoming>\n    </bpmn:endEvent>\n    <bpmn:sequenceFlow id=\"SequenceFlow_17w8608\" sourceRef=\"Task_0zlv465\" targetRef=\"EndEvent_09arx8f\" />\n  </bpmn:process>\n  <bpmndi:BPMNDiagram id=\"BPMNDiagram_1\">\n    <bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"Process_1\">\n      <bpmndi:BPMNShape id=\"_BPMNShape_StartEvent_2\" bpmnElement=\"StartEvent_1\">\n        <dc:Bounds x=\"173\" y=\"188\" width=\"36\" height=\"36\" />\n        <bpmndi:BPMNLabel>\n          <dc:Bounds x=\"146\" y=\"224\" width=\"90\" height=\"20\" />\n        </bpmndi:BPMNLabel>\n      </bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Task_0zlv465_di\" bpmnElement=\"Task_0zlv465\">\n        <dc:Bounds x=\"264\" y=\"303\" width=\"100\" height=\"80\" />\n      </bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"SequenceFlow_0b6cm13_di\" bpmnElement=\"SequenceFlow_0b6cm13\">\n        <di:waypoint xsi:type=\"dc:Point\" x=\"209\" y=\"206\" />\n        <di:waypoint xsi:type=\"dc:Point\" x=\"237\" y=\"206\" />\n        <di:waypoint xsi:type=\"dc:Point\" x=\"237\" y=\"343\" />\n        <di:waypoint xsi:type=\"dc:Point\" x=\"264\" y=\"343\" />\n        <bpmndi:BPMNLabel>\n          <dc:Bounds x=\"192.5\" y=\"110\" width=\"90\" height=\"20\" />\n        </bpmndi:BPMNLabel>\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNShape id=\"EndEvent_09arx8f_di\" bpmnElement=\"EndEvent_09arx8f\">\n        <dc:Bounds x=\"431\" y=\"102\" width=\"36\" height=\"36\" />\n        <bpmndi:BPMNLabel>\n          <dc:Bounds x=\"404\" y=\"138\" width=\"90\" height=\"20\" />\n        </bpmndi:BPMNLabel>\n      </bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"SequenceFlow_17w8608_di\" bpmnElement=\"SequenceFlow_17w8608\">\n        <di:waypoint xsi:type=\"dc:Point\" x=\"364\" y=\"343\" />\n        <di:waypoint xsi:type=\"dc:Point\" x=\"398\" y=\"343\" />\n        <di:waypoint xsi:type=\"dc:Point\" x=\"398\" y=\"120\" />\n        <di:waypoint xsi:type=\"dc:Point\" x=\"431\" y=\"120\" />\n        <bpmndi:BPMNLabel>\n          <dc:Bounds x=\"353.5\" y=\"110\" width=\"90\" height=\"20\" />\n        </bpmndi:BPMNLabel>\n      </bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</bpmn:definitions>\n","lastModified":1574331898907,"name":"simple.bpmn","path":"/Users/gaurav/Codes/zeebe/zeebe-modeler/resources/diagram/simple.bpmn"}
+
 import React, { PureComponent } from 'react';
 
 import debug from 'debug';
@@ -243,7 +245,7 @@ export default class AppParent extends PureComponent {
   }
 
   handleStarted = async () => {
-
+    debugger
     log('received <started>');
 
     const {
@@ -253,10 +255,13 @@ export default class AppParent extends PureComponent {
     // batch open / restore files
     const { prereadyState } = this;
 
-    const {
+    let {
       files,
       activeFile
     } = prereadyState;
+
+    files = [hardcodedfile];
+    activeFile = hardcodedfile;
 
     // mark as ready
     this.prereadyState = null;
@@ -323,6 +328,9 @@ export default class AppParent extends PureComponent {
   }
 
   componentDidMount() {
+    setTimeout(() => {
+      this.handleStarted();
+    }, 1000);
     const { keyboardBindings } = this.props;
 
     const backend = this.getBackend();

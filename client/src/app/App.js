@@ -427,8 +427,9 @@ export class App extends PureComponent {
   }
 
   selectTab = async tab => {
-    const updatedTab = await this.checkFileChanged(tab);
-    return this.showTab(updatedTab || tab);
+    // const updatedTab = await this.checkFileChanged(tab);
+    // return this.showTab(updatedTab || tab);
+    return this.showTab(tab);
   }
 
   moveTab = (tab, newIndex) => {
@@ -560,7 +561,7 @@ export class App extends PureComponent {
    * @return {Array<Tab>} all tabs that could be opened from the given files.
    */
   openFiles = async (files, activateFile) => {
-
+    debugger
     const {
       tabsProvider
     } = this.props;

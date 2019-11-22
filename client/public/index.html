@@ -19,7 +19,29 @@
   </div>
 
 	<div id="root"></div>
+  <script>
+    function logArguments() {
+      console.log(arguments)
+    }
+    window.getAppPreload = function() {
+      return {
+        metadata: {
+          version: '0.8.0-dev',
+          name: 'Zeebe modeler'
+        },// metadata: app.metadata,
+        plugins: [],// plugins: app.plugins.getAll(),
+        flags: {},// flags: app.flags.getAll(),
+        ipcRenderer: {
+          on: logArguments,
+          off: logArguments,
+          once: logArguments,
+          send: logArguments
+        },
+        platform: 'darwin'// platform
+      };
 
+    };
+  </script>
   <script src="bundle.js"></script>
 </body>
 

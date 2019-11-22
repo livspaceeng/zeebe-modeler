@@ -350,6 +350,7 @@ app.createEditorWindow = function() {
   }
 
   const mainWindow = app.mainWindow = new BrowserWindow(windowOptions);
+  mainWindow.openDevTools();
 
   dialog.setActiveWindow(mainWindow);
 
@@ -426,7 +427,6 @@ app.on('restart', function(args) {
  * Emitted when Electron has finished initialization.
  */
 app.on('ready', function() {
-
   bootstrapLog.info('received ready');
 
   menu.registerMenuProvider('plugins', {
