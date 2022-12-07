@@ -58,7 +58,7 @@
     "mri": "^1.1.4",
     "nodemailer": "^5.1.1",
     "npm-run-all": "^4.1.5",
-    "simple-git": "^1.124.0",
+    "simple-git": "^3.15.0",
     "nyc": "^14.1.1",
     "proxyquire": "^2.1.1",
     "sinon": "^7.3.2",
