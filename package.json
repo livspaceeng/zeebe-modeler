@@ -54,7 +54,7 @@
     "execa": "^1.0.0",
     "lerna": "^3.16.1",
     "license-checker": "^25.0.1",
-    "mocha": "^5.2.0",
+    "mocha": "^10.2.0",
     "mri": "^1.1.4",
     "nodemailer": "^5.1.1",
     "npm-run-all": "^4.1.5",
